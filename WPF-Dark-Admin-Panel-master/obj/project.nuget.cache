@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "+z/0+735oro=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pedro\\Desktop\\ISLA.2ºAno\\2º.Semestre\\ProgramaçãoAvançada\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pedro\\.nuget\\packages\\fontawesome.sharp\\5.15.4\\fontawesome.sharp.5.15.4.nupkg.sha512",
+    "C:\\Users\\pedro\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
+    "C:\\Users\\pedro\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'LiveCharts 0.9.7' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v3.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "LiveCharts",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'LiveCharts.Wpf 0.9.7' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v3.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "LiveCharts.Wpf",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}
