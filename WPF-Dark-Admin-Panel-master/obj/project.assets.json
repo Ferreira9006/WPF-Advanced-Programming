@@ -117,11 +117,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pedro\\Desktop\\ISLA.2ºAno\\2º.Semestre\\ProgramaçãoAvançada\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
+      "projectUniqueName": "C:\\Users\\pedro\\Desktop\\WPF-Advanced-Programming\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
       "projectName": "Dark Admin Panel",
-      "projectPath": "C:\\Users\\pedro\\Desktop\\ISLA.2ºAno\\2º.Semestre\\ProgramaçãoAvançada\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
+      "projectPath": "C:\\Users\\pedro\\Desktop\\WPF-Advanced-Programming\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
       "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pedro\\Desktop\\ISLA.2ºAno\\2º.Semestre\\ProgramaçãoAvançada\\WPF-Dark-Admin-Panel-master\\obj\\",
+      "outputPath": "C:\\Users\\pedro\\Desktop\\WPF-Advanced-Programming\\WPF-Dark-Admin-Panel-master\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

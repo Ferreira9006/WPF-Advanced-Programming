@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+z/0+735oro=",
+  "dgSpecHash": "JBnTTZcoVKY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pedro\\Desktop\\ISLA.2ºAno\\2º.Semestre\\ProgramaçãoAvançada\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
+  "projectFilePath": "C:\\Users\\pedro\\Desktop\\WPF-Advanced-Programming\\WPF-Dark-Admin-Panel-master\\Dark Admin Panel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pedro\\.nuget\\packages\\fontawesome.sharp\\5.15.4\\fontawesome.sharp.5.15.4.nupkg.sha512",
     "C:\\Users\\pedro\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",

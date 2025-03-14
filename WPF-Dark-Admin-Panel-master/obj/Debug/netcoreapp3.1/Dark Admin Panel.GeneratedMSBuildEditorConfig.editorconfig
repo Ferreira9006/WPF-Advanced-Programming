@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = Dark_Admin_Panel
-build_property.ProjectDir = C:\Users\pedro\Desktop\ISLA.2ºAno\2º.Semestre\ProgramaçãoAvançada\WPF-Dark-Admin-Panel-master\
+build_property.ProjectDir = C:\Users\pedro\Desktop\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
