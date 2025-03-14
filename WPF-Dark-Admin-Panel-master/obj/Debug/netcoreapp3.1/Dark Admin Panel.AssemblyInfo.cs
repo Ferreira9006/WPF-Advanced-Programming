@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dark Admin Panel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32eaca477f2c606a00bd585f122f95481a096c9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3d9191df4ba1b477d6c3ca597a29c9ed0e6ca47")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dark Admin Panel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dark Admin Panel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
