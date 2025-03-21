@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\Ricardo Brandao\Desktop\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\obj\Debug\netcoreapp3.1\
-=======
-C:\Users\pedro\Desktop\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\obj\Debug\netcoreapp3.1\
->>>>>>> e0fb2221d7d86097ce2f9eea69e4aa47654cb1b9
+C:\Users\Gabriel Ferreira\source\repos\Ferreira9006\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\obj\Debug\netcoreapp3.1\
 Dark_Admin_Panel
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER
-<<<<<<< HEAD
-C:\Users\Ricardo Brandao\Desktop\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\App.xaml
-=======
-C:\Users\pedro\Desktop\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\App.xaml
->>>>>>> e0fb2221d7d86097ce2f9eea69e4aa47654cb1b9
+C:\Users\Gabriel Ferreira\source\repos\Ferreira9006\WPF-Advanced-Programming\WPF-Dark-Admin-Panel-master\App.xaml
 3-908384783
 
 7-1546345960
-202808012167
+202-1953075629
 MainWindow.xaml;UserControls\InfoCard.xaml;UserControls\Item.xaml;
 
-False
+True
 
