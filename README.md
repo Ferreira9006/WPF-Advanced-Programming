@@ -6,60 +6,75 @@ Este repositório contém material e anotações da disciplina **Programação A
 
 ## 🎥 Guias em Vídeo (YouTube)
 
-| Parte | Link |
-|-------|------|
+| Parte   | Link                                                                     |
+| ------- | ------------------------------------------------------------------------ |
 | Parte 1 | [▶️ Ver no YouTube](https://www.youtube.com/watch?v=Ckig8H_h538&t=1153s) |
-| Parte 2 | [▶️ Ver no YouTube](https://www.youtube.com/watch?v=o_ECnZ8zk_Q) |
+| Parte 2 | [▶️ Ver no YouTube](https://www.youtube.com/watch?v=o_ECnZ8zk_Q)         |
 
 ---
 
 ## 🧭 Guia de Comandos Git
 
 ### 📌 Branch Principal
-| Comando | Descrição |
-|--------|-----------|
-| `main` | Nome padrão da branch principal. Antes era `master`. |
+
+| Comando | Descrição                                            |
+| ------- | ---------------------------------------------------- |
+| `main`  | Nome padrão da branch principal. Antes era `master`. |
 
 ### 🔍 Verificar o Estado do Repositório
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando      | Descrição                                                        |
+| ------------ | ---------------------------------------------------------------- |
 | `git status` | Mostra os ficheiros novos, modificados ou em espera para commit. |
 
 ### ➕ Adicionar Ficheiros à Área de Preparação
-| Comando | Descrição |
-|--------|-----------|
-| `git add nomeFicheiro` | Adiciona um ficheiro específico. |
-| `git add .` | Adiciona todos os ficheiros modificados. |
+
+| Comando                | Descrição                                |
+| ---------------------- | ---------------------------------------- |
+| `git add nomeFicheiro` | Adiciona um ficheiro específico.         |
+| `git add .`            | Adiciona todos os ficheiros modificados. |
 
 ### 💾 Fazer Commit das Alterações
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando                    | Descrição                                                              |
+| -------------------------- | ---------------------------------------------------------------------- |
 | `git commit -m "Mensagem"` | Guarda as alterações no repositório local com uma mensagem descritiva. |
 
 ### 🚀 Enviar Alterações para o Repositório Remoto
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando                  | Descrição                                         |
+| ------------------------ | ------------------------------------------------- |
 | `git push origin branch` | Envia as alterações da branch local para a cloud. |
 
 ### 📜 Ver Histórico de Commits
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando   | Descrição                    |
+| --------- | ---------------------------- |
 | `git log` | Exibe os commits realizados. |
 
 ### 🔀 Mesclar Branches
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando            | Descrição                                                                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `git merge branch` | Mescla as alterações de outra branch para a branch atual. <br>Após o merge, usa `git push` para enviar as mudanças para a cloud. |
 
 ### ✏️ Alterar o Nome da Branch Principal
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando              | Descrição                               |
+| -------------------- | --------------------------------------- |
 | `git branch -M main` | Renomeia a branch `master` para `main`. |
 
 ### ⬇️ Atualizar o Projeto com as Alterações da Cloud
-| Comando | Descrição |
-|--------|-----------|
+
+| Comando    | Descrição                                 |
+| ---------- | ----------------------------------------- |
 | `git pull` | Puxa as alterações do repositório remoto. |
+
+### ⬇️ Descartar todas as alterações não commitadas
+
+| Comando            | Descrição                                     |
+| ------------------ | --------------------------------------------- |
+| `git reset --hard` | Descartar todas as alterações não commitadas. |
 
 ---
 
