@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <RootNamespace>Dark_Admin_Panel</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -11,6 +11,10 @@
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CamadaNegocios\CamadaNegocios.csproj" />
   </ItemGroup>
 
 </Project>

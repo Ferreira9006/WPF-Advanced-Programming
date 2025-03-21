@@ -11,25 +11,14 @@ namespace CamadaDados.Venda
 {
     public class Venda
     {
-
-
-
         #region Methods
-
-        public static SqlConnection OpenDatabase(string connectionString)
+        
+        public static DataTable ObterLista()
         {
-            SqlConnection dbConnection = new SqlConnection(connectionString);
-            dbConnection.Open();
-            return dbConnection;
-        }
-
-        public static DataTable Listar( DateTime dataInicio, DateTime dataFim, out string errorMessage)
-        {
-            //instaciar objeto do tipo dataTable
             DataTable dataTable = null;
             try
-            {   //string que guarda caminho para sql, localizada nas propriedadades
-                string connectionString = Properties.Settings.Default.ConnectionString;
+            {
+                string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProgramacaoAvancada;Data Source=Pedro\\SQLEXPRESS;Encrypt=False";
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
 
                 sqlConnection.Open();
@@ -37,7 +26,7 @@ namespace CamadaDados.Venda
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.CommandText = "ClienteListar";
+                sqlCommand.CommandText = "ListarVendas";
 
                 SqlDataReader dataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult);
 
@@ -50,13 +39,11 @@ namespace CamadaDados.Venda
             catch (Exception)
             {
 
-
+                throw;
             }
 
             return dataTable;
         }
-
-     
         #endregion
 
 

@@ -78,7 +78,8 @@ namespace CamadaNegocios.Venda
 
         public static DataTable Listar(out string erro)
         {
-            DataTable dataTable = CamadaDados.Venda.Venda.Listar(out erro);
+            erro = string.Empty;
+            DataTable dataTable = CamadaDados.Venda.Venda.ObterLista();
             return dataTable;
         }
 
@@ -92,6 +93,7 @@ namespace CamadaNegocios.Venda
 
             return vendas;
         }
+
         #endregion
     }
 }

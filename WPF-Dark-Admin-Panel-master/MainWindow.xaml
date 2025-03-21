@@ -7,7 +7,8 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:uc="clr-namespace:Dark_Admin_Panel.UserControls"
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
-        Background="Transparent" mc:Ignorable="d" Height="740" Width="1280">
+        Background="Transparent" mc:Ignorable="d" Height="740" Width="1280"
+        Loaded="Window_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -150,7 +151,7 @@
 
                     <uc:InfoCard Grid.Column="0" Title="Total Views" Number="654,947" Icon="Eye" Background1="#827BFF" Background2="#D9B5FF" EllipseBackground1="#B298FD" EllipseBackground2="#E4BBFF"/>
                     <uc:InfoCard Grid.Column="1" Title="Total Orders" Number="192,320" Icon="ShoppingCart" Background1="#FD8A87" Background2="#F3AB92" EllipseBackground1="#FBD5A8" EllipseBackground2="#FDB89B"/>
-                    <uc:InfoCard Grid.Column="2" Title="Total Revenue" Number="$14,528" Icon="Coins" Background1="#FC84CB" Background2="#FC8FAE" EllipseBackground1="#FC8FAE" EllipseBackground2="#FFABE6"/>
+                    <uc:InfoCard x:Name="TopVendedorInfoCard" Grid.Column="2" Title="Top Vendedor" Number="$14,528" Icon="Coins" Background1="#FC84CB" Background2="#FC8FAE" EllipseBackground1="#FC8FAE" EllipseBackground2="#FFABE6"/>
                 </Grid>
 
                 <!--Chart Section-->
