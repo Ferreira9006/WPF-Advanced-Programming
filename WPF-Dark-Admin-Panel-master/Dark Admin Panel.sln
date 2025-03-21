@@ -5,12 +5,6 @@ VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dark Admin Panel", "Dark Admin Panel.csproj", "{40A67B7B-5282-4D95-A133-D1DFF7DFED66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalDB", "..\BDGlobal\GlobalDB.csproj", "{A7E4AB53-D6CA-4541-B4CB-7C26E265F160}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "..\DataLayer\DataLayer.csproj", "{C902AC1E-5B7E-4817-8962-4DC30A636ACB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{5AEFBBC0-0380-4ACC-B78C-74C8834CBF88}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaDados", "..\CamadaDados\CamadaDados.csproj", "{0EB7AB91-EFE7-455A-A895-00CCE50F7AE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaNegocios", "..\CamadaNegocios\CamadaNegocios.csproj", "{3376EAEC-DB6C-4FFD-862C-E77C5994F27E}"
@@ -25,18 +19,6 @@ Global
 		{40A67B7B-5282-4D95-A133-D1DFF7DFED66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A67B7B-5282-4D95-A133-D1DFF7DFED66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A67B7B-5282-4D95-A133-D1DFF7DFED66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7E4AB53-D6CA-4541-B4CB-7C26E265F160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7E4AB53-D6CA-4541-B4CB-7C26E265F160}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7E4AB53-D6CA-4541-B4CB-7C26E265F160}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7E4AB53-D6CA-4541-B4CB-7C26E265F160}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C902AC1E-5B7E-4817-8962-4DC30A636ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C902AC1E-5B7E-4817-8962-4DC30A636ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C902AC1E-5B7E-4817-8962-4DC30A636ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C902AC1E-5B7E-4817-8962-4DC30A636ACB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AEFBBC0-0380-4ACC-B78C-74C8834CBF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AEFBBC0-0380-4ACC-B78C-74C8834CBF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AEFBBC0-0380-4ACC-B78C-74C8834CBF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AEFBBC0-0380-4ACC-B78C-74C8834CBF88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0EB7AB91-EFE7-455A-A895-00CCE50F7AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0EB7AB91-EFE7-455A-A895-00CCE50F7AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EB7AB91-EFE7-455A-A895-00CCE50F7AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU

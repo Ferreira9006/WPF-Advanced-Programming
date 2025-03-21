@@ -13,7 +13,6 @@ SELECT
 FROM Venda v
 JOIN Marca m ON v.MarcaID = m.MarcaID
 JOIN Vendedor ve ON v.VendedorID = ve.VendedorID
-WHERE v.DataVenda BETWEEN @dataInicio AND @dataFim
 
 END
 GO
