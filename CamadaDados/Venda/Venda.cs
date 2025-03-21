@@ -23,39 +23,40 @@ namespace CamadaDados.Venda
             return dbConnection;
         }
 
-        public static DataTable RetrieveList(string storedProcedureName, string connectionString, out string errorMessage)
+        public static DataTable Listar( DateTime dataInicio, DateTime dataFim, out string errorMessage)
         {
+            //instaciar objeto do tipo dataTable
             DataTable dataTable = null;
-            errorMessage = string.Empty;
             try
-            {
-                SqlConnection dbConnection = GlobalDB.OpenDatabase(connectionString);
+            {   //string que guarda caminho para sql, localizada nas propriedadades
+                string connectionString = Properties.Settings.Default.ConnectionString;
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
 
-                SqlCommand dbCommand = new SqlCommand(storedProcedureName, dbConnection);
-                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlConnection.Open();
 
-                SqlDataReader dataReader = dbCommand.ExecuteReader(CommandBehavior.SingleResult);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = "ClienteListar";
+
+                SqlDataReader dataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult);
 
                 dataTable = new DataTable();
                 dataTable.Load(dataReader);
 
-                dbCommand.Dispose();
-                dbConnection.Close();
+                sqlCommand.Dispose();
+                sqlConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                errorMessage = ex.Message;
+
+
             }
-            return dataTable;
-        }
-
-        // falta adicionar o parametro de data inicial e final
-        public static DataTable Listar(out string erro)
-        {
-            DataTable dataTable = GlobalDB.RetrieveList("ListarVendas", Properties.Settings.Default.ConnectionString, out erro);
 
             return dataTable;
         }
+
+     
         #endregion
 
 
