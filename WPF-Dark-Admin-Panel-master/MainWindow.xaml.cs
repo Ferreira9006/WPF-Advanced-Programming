@@ -6,9 +6,22 @@ namespace Dark_Admin_Panel
 {
     public partial class MainWindow : Window
     {
+        #region Construtores
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Eventos
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            VendaCollection vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
+
+            this.TopVendedorInfoCard.Number = vendas.ObterTopVendedor().ToString();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -19,14 +32,11 @@ namespace Dark_Admin_Panel
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            VendaCollection vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
-
-          
-
-            this.TopVendedorInfoCard.Number = vendas.ObterTopVendedor().ToString();
-
+            this.Close();
         }
+
+        #endregion
     }
 }
