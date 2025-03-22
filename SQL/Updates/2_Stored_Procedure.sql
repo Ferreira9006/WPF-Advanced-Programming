@@ -1,6 +1,5 @@
 GO
 CREATE PROCEDURE ListarVendas 
-@dataInicio datetime, @dataFim datetime
 AS
 
 BEGIN

@@ -18,7 +18,7 @@ namespace CamadaDados.Venda
             DataTable dataTable = null;
             try
             {
-                string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProgramacaoAvancada;Data Source=Pedro\\SQLEXPRESS;Encrypt=False";
+                string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=IslaDrive;Data Source=PCS1\\SQLEXPRESS;Encrypt=False";
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
 
                 sqlConnection.Open();
@@ -38,7 +38,6 @@ namespace CamadaDados.Venda
             }
             catch (Exception)
             {
-
                 throw;
             }
 
