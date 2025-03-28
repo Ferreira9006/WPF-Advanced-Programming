@@ -41,23 +41,29 @@ namespace Dark_Admin_Panel.UserControls
 
         private void CriarFiltros()
         {
+            AnosUserControl anosUserControl = new AnosUserControl();
+            for (int i = 2020; i <= DateTime.Now.Year; i++)
+            {
+                anosUserControl.Anos.Items.Add(i.ToString());
+            }
+            this.FiltrosAnos.Children.Add(anosUserControl);
+
             this.TipoFiltroPorDataSelecionada = FiltroPorDataEnum.Todos;
             foreach (CamadaNegocios.Enum.FiltroPorDataEnum filtroPorDataEnum in Enum.GetValues(typeof(CamadaNegocios.Enum.FiltroPorDataEnum)))
             {
                 FiltroPorDataUserControl filtroPorDataUserControl = new FiltroPorDataUserControl();
                 filtroPorDataUserControl.TipoFiltroPorData = filtroPorDataEnum;
-                //filtroPorDataUserControl.Texto = filtroPorDataEnum.ObterDescricao();
 
                 filtroPorDataUserControl.Selecionado = (filtroPorDataEnum == this.TipoFiltroPorDataSelecionada);
                 filtroPorDataUserControl.BotaoSelecionado += selecionou;
 
-                this.Filtros.Children.Add(filtroPorDataUserControl);
+                this.FiltrosDatas.Children.Add(filtroPorDataUserControl);
             }
         }
 
         private void selecionou (object sender, RoutedEventArgs e)
         {
-            foreach (FiltroPorDataUserControl filtroPorDataUserControl in this.Filtros.Children)
+            foreach (FiltroPorDataUserControl filtroPorDataUserControl in this.FiltrosDatas.Children)
             {
                 if (filtroPorDataUserControl.TipoFiltroPorData == ((FiltroPorDataUserControl)sender).TipoFiltroPorData)
                 {
@@ -69,8 +75,6 @@ namespace Dark_Admin_Panel.UserControls
                     filtroPorDataUserControl.Selecionado = false;
                 }
             }
-
-            //MessageBox.Show("selecionou");
         }
     }
 }
