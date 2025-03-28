@@ -1,4 +1,8 @@
-﻿using CamadaNegocios.Venda;
+﻿using CamadaNegocios.Enum;
+using CamadaNegocios.Venda;
+using Dark_Admin_Panel.UserControls;
+using Microsoft.Identity.Client;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -22,6 +26,8 @@ namespace Dark_Admin_Panel
             VendaCollection vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
 
             this.TopVendedorInfoCard.Number = vendas.ObterTopVendedor().ToString();
+
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

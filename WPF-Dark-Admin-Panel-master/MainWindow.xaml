@@ -131,12 +131,8 @@
                 </Grid.RowDefinitions>
 
                 <!--Top Menu-->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 30 20">
-                    <Button Content="Today" Style="{StaticResource topMenuButton}"/>
-                    <Button Content="Week" Style="{StaticResource topMenuButton}" Background="#5B60C4" Foreground="#ffffff"/>
-                    <Button Content="Month" Style="{StaticResource topMenuButton}"/>
-                    <Button Content="Year" Style="{StaticResource topMenuButton}"/>
-                </StackPanel>
+                <uc:StackPanelFiltrosUserControl></uc:StackPanelFiltrosUserControl>
+
 
                 <!--Title-->
                 <TextBlock FontSize="26" Foreground="#CCD7FF" Margin="50 35 0 20" Text="Good Afternoon, Perman" HorizontalAlignment="Left"/>
