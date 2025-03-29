@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Dark_Admin_Panel.UserControls.FiltroPorAnoUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dark_Admin_Panel.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ComboBox x:Name="Anos" Width="100"
+          Foreground="#000000"
+          Background="#5A64C4" FontWeight="Bold"
+          Padding="10,5"
+          Margin="5"
+          BorderBrush="Transparent"
+          BorderThickness="0"
+          HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center"
+          FontSize="14"
+          Height="32"
+          />
+</UserControl>

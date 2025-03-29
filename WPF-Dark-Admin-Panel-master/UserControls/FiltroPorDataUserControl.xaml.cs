@@ -21,29 +21,28 @@ namespace Dark_Admin_Panel.UserControls
     /// </summary>
     public partial class FiltroPorDataUserControl : UserControl
     {
-        public static RoutedEvent BotaoSelecionadoEvento = 
-            EventManager.RegisterRoutedEvent("BotaoSelecionado", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FiltroPorDataUserControl));
-        
-        public event RoutedEventHandler BotaoSelecionado
-        {
-            add { AddHandler(BotaoSelecionadoEvento, value); }
-            remove { RemoveHandler(BotaoSelecionadoEvento, value); }
-        }
+        #region Construtores
+
+        public event EventHandler<EventArgs> BotaoSelecionadoEvento;
 
         public FiltroPorDataUserControl()
         {
             InitializeComponent();
         }
 
-        private FiltroPorDataEnum tipoFiltroPorData;
+        #endregion
 
-        public FiltroPorDataEnum TipoFiltroPorData
+        #region Propriedades
+
+        private DatasEnum tipo;
+
+        public DatasEnum Tipo
         {
-            get { return tipoFiltroPorData; }
+            get { return tipo; }
             set 
             {
-                tipoFiltroPorData = value;
-                this.Texto = tipoFiltroPorData.ObterDescricao();
+                tipo = value;
+                this.Texto = tipo.ObterDescricao();
             }
         }
 
@@ -54,20 +53,18 @@ namespace Dark_Admin_Panel.UserControls
             get { return selecionado; }
             set { 
                 selecionado = value;
+
                 if (!selecionado)
                 {
                     this.dataButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffffff"));
-                }
-                else
-                {
-                    this.dataButton.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 50));
-                    this.dataButton.FontWeight = FontWeights.Bold;
+                    this.dataButton.FontWeight = FontWeights.Normal;
+                    return;                    
                 }
 
-
+                this.dataButton.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 50));
+                this.dataButton.FontWeight = FontWeights.Bold;
             }
         }
-
 
         private string texto;
 
@@ -81,10 +78,21 @@ namespace Dark_Admin_Panel.UserControls
             }
         }
 
+        #endregion
+
+        #region Eventos
+
+        public void OnBotaoSelecionado(EventArgs e)
+        {
+            BotaoSelecionadoEvento?.Invoke(this, e);
+        }
+
         private void dataButton_Click(object sender, RoutedEventArgs e)
         {
             this.Selecionado = true;
-            RaiseEvent(new RoutedEventArgs(BotaoSelecionadoEvento));
+            OnBotaoSelecionado(EventArgs.Empty);
         }
+
+        #endregion
     }
 }

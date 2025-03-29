@@ -21,54 +21,72 @@ namespace Dark_Admin_Panel.UserControls
     /// </summary>
     public partial class StackPanelFiltrosUserControl : UserControl
     {
+        #region Construtores
+
         public StackPanelFiltrosUserControl()
         {
             InitializeComponent();
-            this.CriarFiltros();
+            this.InicializarFiltros();
         }
 
+        #endregion
 
-        private FiltroPorDataEnum tipoFiltroPorDataSelecionada;
+        #region Proprieades
 
-        public FiltroPorDataEnum TipoFiltroPorDataSelecionada
+        private DatasEnum tipoDataSelecionada;
+
+        public DatasEnum TipoDataSelecionada
         {
-            get { return tipoFiltroPorDataSelecionada; }
+            get { return tipoDataSelecionada; }
             set
             {
-                tipoFiltroPorDataSelecionada = value;
+                tipoDataSelecionada = value;
             }
         }
 
-        private void CriarFiltros()
+        #endregion
+
+        #region Métodos
+
+        private void InicializarFiltros()
         {
-            AnosUserControl anosUserControl = new AnosUserControl();
+            this.TipoDataSelecionada = DatasEnum.Todos;
+
+            FiltroPorAnoUserControl anosUserControl = new FiltroPorAnoUserControl();
+
             for (int i = 2020; i <= DateTime.Now.Year; i++)
             {
                 anosUserControl.Anos.Items.Add(i.ToString());
             }
+
             this.FiltrosAnos.Children.Add(anosUserControl);
 
-            this.TipoFiltroPorDataSelecionada = FiltroPorDataEnum.Todos;
-            foreach (CamadaNegocios.Enum.FiltroPorDataEnum filtroPorDataEnum in Enum.GetValues(typeof(CamadaNegocios.Enum.FiltroPorDataEnum)))
+            foreach (CamadaNegocios.Enum.DatasEnum datasEnum in Enum.GetValues(typeof(CamadaNegocios.Enum.DatasEnum)))
             {
                 FiltroPorDataUserControl filtroPorDataUserControl = new FiltroPorDataUserControl();
-                filtroPorDataUserControl.TipoFiltroPorData = filtroPorDataEnum;
+                filtroPorDataUserControl.Tipo = datasEnum;
 
-                filtroPorDataUserControl.Selecionado = (filtroPorDataEnum == this.TipoFiltroPorDataSelecionada);
-                filtroPorDataUserControl.BotaoSelecionado += selecionou;
+                filtroPorDataUserControl.Selecionado = (datasEnum == this.TipoDataSelecionada);
+                filtroPorDataUserControl.BotaoSelecionadoEvento += selecionou;
 
                 this.FiltrosDatas.Children.Add(filtroPorDataUserControl);
             }
         }
 
-        private void selecionou (object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Eventos
+
+        private void selecionou (object sender, EventArgs e)
         {
             foreach (FiltroPorDataUserControl filtroPorDataUserControl in this.FiltrosDatas.Children)
             {
-                if (filtroPorDataUserControl.TipoFiltroPorData == ((FiltroPorDataUserControl)sender).TipoFiltroPorData)
+                if (filtroPorDataUserControl.Tipo == ((FiltroPorDataUserControl)sender).Tipo)
                 {
+                    MessageBox.Show("Selecionou o filtro: " + filtroPorDataUserControl.Tipo); // Debug
+
                     filtroPorDataUserControl.Selecionado = true;
-                    this.TipoFiltroPorDataSelecionada = filtroPorDataUserControl.TipoFiltroPorData;
+                    this.TipoDataSelecionada = filtroPorDataUserControl.Tipo;
                 }
                 else
                 {
@@ -76,5 +94,7 @@ namespace Dark_Admin_Panel.UserControls
                 }
             }
         }
+        
+        #endregion
     }
 }

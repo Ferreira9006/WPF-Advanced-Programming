@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Dark_Admin_Panel.UserControls
 {
     /// <summary>
-    /// Interaction logic for AnosUserControl.xaml
+    /// Interaction logic for FiltroPorAnoUserControl.xaml
     /// </summary>
-    public partial class AnosUserControl : UserControl
+    public partial class FiltroPorAnoUserControl : UserControl
     {
-        public AnosUserControl()
+        public FiltroPorAnoUserControl()
         {
             InitializeComponent();
         }

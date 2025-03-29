@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaNegocios.Enum
 {
-    public enum FiltroPorDataEnum
+    public enum DatasEnum
     {
         Todos,
         Hoje,
@@ -15,21 +15,21 @@ namespace CamadaNegocios.Enum
         Ano
     }
 
-    public static class FiltroPorDataEnumExtensions
+    public static class DatasEnumExtensions
     {
-        public static string ObterDescricao(this FiltroPorDataEnum filtroPorDataEnum)
+        public static string ObterDescricao(this DatasEnum datasEnum)
         {
-            switch (filtroPorDataEnum)
+            switch (datasEnum)
             {
-                case FiltroPorDataEnum.Todos:
+                case DatasEnum.Todos:
                     return "Todos";
-                case FiltroPorDataEnum.Hoje:
+                case DatasEnum.Hoje:
                     return "Hoje";
-                case FiltroPorDataEnum.Semana:
+                case DatasEnum.Semana:
                     return "Semana";
-                case FiltroPorDataEnum.Mes:
+                case DatasEnum.Mes:
                     return "Mês";
-                case FiltroPorDataEnum.Ano:
+                case DatasEnum.Ano:
                     return "Ano";
                 default:
                     return string.Empty;
