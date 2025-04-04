@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CamadaNegocios.Enum;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -36,19 +37,56 @@ namespace CamadaNegocios.Venda
 
         #region Metodos
 
-        public string ObterTopVendedor()
+        public string ObterTopVendedor(DatasEnum datasEnum, int ano)
         {
-            var topVendedor = this.GroupBy(v => v.NomeVendedor)
-                .Select(v => new Venda
-                {
-                    NomeVendedor = v.Key,
-                    Preco = v.Sum(p => p.Preco)
-                })
-                .OrderByDescending(v => v.Preco)
-                .FirstOrDefault(); // Retorna o primeiro ou null se a lista estiver vazia
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            var topVendedor = this
+                            .Where(e => e.DataVenda >= dataInicial && e.DataVenda <= dataFinal)
+                            .GroupBy(e => e.NomeVendedor)
+                            .Select(g => new
+                            {
+                                NomeVendedor = g.Key,
+                                TotalVendas = g.Sum(x => x.Preco)
+                            })
+                            .OrderByDescending(g => g.TotalVendas)
+                            .FirstOrDefault()?.NomeVendedor;
 
-            
-            return topVendedor.NomeVendedor;
+            return topVendedor;
+        }
+
+        private (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
+        {
+            DateTime dataInicial = DateTime.MinValue;
+            DateTime dataFinal = DateTime.MinValue;
+
+            if (tipoData == DatasEnum.Ano) 
+            {
+                dataInicial = new DateTime(ano, 1, 1);
+                dataFinal = new DateTime(ano, 12, 31);
+            }
+            if(tipoData == DatasEnum.Mes)
+            {
+                dataInicial = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                dataFinal = new DateTime(DateTime.Today.Year, DateTime.Today.Month+1, 1);
+                dataFinal = dataFinal.AddDays(-1);
+            }
+            if(tipoData==DatasEnum.Semana)
+            {
+                dataInicial = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+                dataFinal = dataInicial.AddDays(6);
+            }
+            if (tipoData == DatasEnum.Hoje)
+            {
+                dataInicial = DateTime.Today;
+                dataFinal = DateTime.Today;
+            }
+            if (tipoData == DatasEnum.Todos)
+            {
+                dataInicial = DateTime.MinValue;
+                dataFinal = DateTime.MaxValue;
+            }
+
+            return (dataInicial, dataFinal);
         }
 
         #endregion

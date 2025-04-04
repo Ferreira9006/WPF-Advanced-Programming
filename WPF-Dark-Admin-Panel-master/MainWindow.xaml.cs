@@ -1,4 +1,5 @@
-﻿using CamadaNegocios.Enum;
+﻿using CamadaDados.Venda;
+using CamadaNegocios.Enum;
 using CamadaNegocios.Venda;
 using Dark_Admin_Panel.UserControls;
 using Microsoft.Identity.Client;
@@ -19,14 +20,54 @@ namespace Dark_Admin_Panel
 
         #endregion
 
+        #region Properties
+
+        VendaCollection Vendas { get; set; }
+
+        private DatasEnum datas;
+
+        public DatasEnum Data
+        {
+            get { return datas; }
+            set { datas = value;
+
+                
+
+            }
+        }
+
+        private int ano;
+
+        public int Ano
+        {
+            get { return ano; }
+            set { ano = value; }
+        }
+
+    
+
+
+        #endregion
+
         #region Eventos
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            VendaCollection vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
+            this.Vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
 
-            this.TopVendedorInfoCard.Number = vendas.ObterTopVendedor().ToString();
 
+            this.AplicarFiltro();
+        }
+
+        private void AplicarFiltro()
+        {
+            if (this.Vendas.ObterTopVendedor(this.Data, this.Ano) == null)
+            {
+                this.TopVendedorInfoCard.Number = "NA";
+            } else
+            {
+                this.TopVendedorInfoCard.Number = this.Vendas.ObterTopVendedor(this.Data, this.Ano).ToString();
+            }
 
         }
 
@@ -44,5 +85,19 @@ namespace Dark_Admin_Panel
         }
 
         #endregion
+
+        private void StackPanelFiltrosUserControl_DataSelecionadoEvento(object sender, CamadaNegocios.Eventos.DataEventArgs e)
+        {
+            this.Data = e.Data;
+
+
+            this.AplicarFiltro();
+        }
+
+        private void StackPanelFiltrosUserControl_AnoSelecionadoEvento(object sender, CamadaNegocios.Eventos.AnoEventArgs e)
+        {
+            this.Ano = e.Ano;
+            this.AplicarFiltro();
+        }
     }
 }

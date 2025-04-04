@@ -14,7 +14,9 @@
                     Orientation="Horizontal"
                     Grid.Column="0"
                     Margin="0,0,10,0"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center">
+            <ComboBox x:Name="anoComboBox" SelectionChanged="anoComboBox_SelectionChanged"></ComboBox>
+        </StackPanel>
 
         <!-- Filtros por data na segunda coluna -->
         <StackPanel x:Name="FiltrosDatas"

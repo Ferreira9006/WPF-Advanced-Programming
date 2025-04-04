@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CamadaNegocios.Enum;
+using CamadaNegocios.Eventos;
 
 namespace Dark_Admin_Panel.UserControls
 {
@@ -44,6 +45,9 @@ namespace Dark_Admin_Panel.UserControls
             }
         }
 
+    
+
+
         #endregion
 
         #region Métodos
@@ -52,14 +56,10 @@ namespace Dark_Admin_Panel.UserControls
         {
             this.TipoDataSelecionada = DatasEnum.Todos;
 
-            FiltroPorAnoUserControl anosUserControl = new FiltroPorAnoUserControl();
-
             for (int i = 2020; i <= DateTime.Now.Year; i++)
             {
-                anosUserControl.Anos.Items.Add(i.ToString());
+                anoComboBox.Items.Add(i.ToString());
             }
-
-            this.FiltrosAnos.Children.Add(anosUserControl);
 
             foreach (CamadaNegocios.Enum.DatasEnum datasEnum in Enum.GetValues(typeof(CamadaNegocios.Enum.DatasEnum)))
             {
@@ -79,6 +79,7 @@ namespace Dark_Admin_Panel.UserControls
 
         private void selecionou (object sender, EventArgs e)
         {
+            
             foreach (FiltroPorDataUserControl filtroPorDataUserControl in this.FiltrosDatas.Children)
             {
                 if (filtroPorDataUserControl.Tipo == ((FiltroPorDataUserControl)sender).Tipo)
@@ -87,6 +88,8 @@ namespace Dark_Admin_Panel.UserControls
 
                     filtroPorDataUserControl.Selecionado = true;
                     this.TipoDataSelecionada = filtroPorDataUserControl.Tipo;
+
+                    OnDataSelecionado(new DataEventArgs(this.TipoDataSelecionada));
                 }
                 else
                 {
@@ -94,7 +97,43 @@ namespace Dark_Admin_Panel.UserControls
                 }
             }
         }
+
+
         
+        
+
+        public event EventHandler<DataEventArgs> DataSelecionadoEvento;
+
+        public void OnDataSelecionado(DataEventArgs e)
+        {
+            DataSelecionadoEvento?.Invoke(this, e);
+        }
+
+
+         public event EventHandler<AnoEventArgs> AnoSelecionadoEvento;
+
+        public void OnAnoSelecionado(AnoEventArgs e)
+        {
+            AnoSelecionadoEvento?.Invoke(this, e);
+        }
+
+
+
+
+
+
         #endregion
+
+        private void anoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (anoComboBox.SelectedItem != null)
+            {
+                int ano = Convert.ToInt32(anoComboBox.SelectedItem);
+
+                OnAnoSelecionado(new AnoEventArgs(ano));
+
+            }
+
+        }
     }
 }

@@ -35,5 +35,12 @@ namespace CamadaNegocios.Enum
                     return string.Empty;
             }
         }
+
+
+        public static DateTime ObterData()
+        {
+
+            return DateTime.Now;
+        }
     }
 }

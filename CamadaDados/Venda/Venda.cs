@@ -18,7 +18,7 @@ namespace CamadaDados.Venda
             DataTable dataTable = null;
             try
             {
-                string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=IslaDrive;Data Source=PCS1\\SQLEXPRESS;Encrypt=False";
+                string connectionString = @"Data Source=RB\SQLEXPRESS;Initial Catalog=IslaDrive;Integrated Security=True;TrustServerCertificate=True";
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
 
                 sqlConnection.Open();

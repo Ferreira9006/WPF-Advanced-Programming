@@ -87,12 +87,14 @@ namespace Dark_Admin_Panel.UserControls
             BotaoSelecionadoEvento?.Invoke(this, e);
         }
 
-        private void dataButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Selecionado = true;
-            OnBotaoSelecionado(EventArgs.Empty);
-        }
+      
 
         #endregion
+
+        private void dataButton_Click(object sender, EventArgs e)
+        {
+            this.Selecionado = true;
+             OnBotaoSelecionado(EventArgs.Empty);
+        }
     }
 }

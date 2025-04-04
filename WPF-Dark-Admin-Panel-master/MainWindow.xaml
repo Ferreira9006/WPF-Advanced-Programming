@@ -131,7 +131,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Top Menu-->
-                <uc:StackPanelFiltrosUserControl></uc:StackPanelFiltrosUserControl>
+                <uc:StackPanelFiltrosUserControl DataSelecionadoEvento="StackPanelFiltrosUserControl_DataSelecionadoEvento" AnoSelecionadoEvento="StackPanelFiltrosUserControl_AnoSelecionadoEvento"></uc:StackPanelFiltrosUserControl>
 
 
                 <!--Title-->
