@@ -59,32 +59,38 @@ namespace CamadaNegocios.Venda
             DateTime dataInicial = DateTime.MinValue;
             DateTime dataFinal = DateTime.MinValue;
 
-            if (tipoData == DatasEnum.Ano) 
+
+            if(ano > 0)
             {
                 dataInicial = new DateTime(ano, 1, 1);
                 dataFinal = new DateTime(ano, 12, 31);
             }
-            if(tipoData == DatasEnum.Mes)
+            else
             {
-                dataInicial = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                dataFinal = new DateTime(DateTime.Today.Year, DateTime.Today.Month+1, 1);
-                dataFinal = dataFinal.AddDays(-1);
+                if (tipoData == DatasEnum.Mes)
+                {
+                    dataInicial = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                    dataFinal = new DateTime(DateTime.Today.Year, DateTime.Today.Month + 1, 1);
+                    dataFinal = dataFinal.AddDays(-1);
+                }
+                else if (tipoData == DatasEnum.Semana)
+                {
+                    dataInicial = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+                    dataFinal = dataInicial.AddDays(6);
+                }
+                else if (tipoData == DatasEnum.Hoje)
+                {
+                    dataInicial = DateTime.Today;
+                    dataFinal = DateTime.Today;
+                }
+                else if (tipoData == DatasEnum.Todos)
+                {
+                    dataInicial = DateTime.MinValue;
+                    dataFinal = DateTime.MaxValue;
+                }
+
             }
-            if(tipoData==DatasEnum.Semana)
-            {
-                dataInicial = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-                dataFinal = dataInicial.AddDays(6);
-            }
-            if (tipoData == DatasEnum.Hoje)
-            {
-                dataInicial = DateTime.Today;
-                dataFinal = DateTime.Today;
-            }
-            if (tipoData == DatasEnum.Todos)
-            {
-                dataInicial = DateTime.MinValue;
-                dataFinal = DateTime.MaxValue;
-            }
+            
 
             return (dataInicial, dataFinal);
         }

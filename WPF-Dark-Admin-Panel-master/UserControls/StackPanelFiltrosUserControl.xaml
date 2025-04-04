@@ -15,7 +15,17 @@
                     Grid.Column="0"
                     Margin="0,0,10,0"
                     VerticalAlignment="Center">
-            <ComboBox x:Name="anoComboBox" SelectionChanged="anoComboBox_SelectionChanged"></ComboBox>
+            <ComboBox x:Name="anoComboBox" Width="100"
+          Foreground="#000000"
+          Background="#5A64C4" FontWeight="Bold"
+          Padding="10,5"
+          Margin="5"
+          BorderBrush="Transparent"
+          BorderThickness="0"
+          HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center"
+          FontSize="14"
+          Height="32" SelectionChanged="anoComboBox_SelectionChanged"></ComboBox>
         </StackPanel>
 
         <!-- Filtros por data na segunda coluna -->

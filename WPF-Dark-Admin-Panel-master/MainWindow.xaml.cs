@@ -89,14 +89,16 @@ namespace Dark_Admin_Panel
         private void StackPanelFiltrosUserControl_DataSelecionadoEvento(object sender, CamadaNegocios.Eventos.DataEventArgs e)
         {
             this.Data = e.Data;
-
-
+            this.Ano = 0;
             this.AplicarFiltro();
         }
 
         private void StackPanelFiltrosUserControl_AnoSelecionadoEvento(object sender, CamadaNegocios.Eventos.AnoEventArgs e)
         {
+        
+
             this.Ano = e.Ano;
+            this.Data = DatasEnum.Todos;
             this.AplicarFiltro();
         }
     }

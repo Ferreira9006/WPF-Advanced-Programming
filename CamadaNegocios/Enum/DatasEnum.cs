@@ -11,8 +11,8 @@ namespace CamadaNegocios.Enum
         Todos,
         Hoje,
         Semana,
-        Mes,
-        Ano
+        Mes
+        
     }
 
     public static class DatasEnumExtensions
@@ -29,8 +29,7 @@ namespace CamadaNegocios.Enum
                     return "Semana";
                 case DatasEnum.Mes:
                     return "Mês";
-                case DatasEnum.Ano:
-                    return "Ano";
+               
                 default:
                     return string.Empty;
             }

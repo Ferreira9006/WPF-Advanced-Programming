@@ -60,6 +60,7 @@ namespace Dark_Admin_Panel.UserControls
             {
                 anoComboBox.Items.Add(i.ToString());
             }
+    
 
             foreach (CamadaNegocios.Enum.DatasEnum datasEnum in Enum.GetValues(typeof(CamadaNegocios.Enum.DatasEnum)))
             {
@@ -84,7 +85,7 @@ namespace Dark_Admin_Panel.UserControls
             {
                 if (filtroPorDataUserControl.Tipo == ((FiltroPorDataUserControl)sender).Tipo)
                 {
-                    MessageBox.Show("Selecionou o filtro: " + filtroPorDataUserControl.Tipo); // Debug
+                    
 
                     filtroPorDataUserControl.Selecionado = true;
                     this.TipoDataSelecionada = filtroPorDataUserControl.Tipo;
@@ -107,6 +108,15 @@ namespace Dark_Admin_Panel.UserControls
         public void OnDataSelecionado(DataEventArgs e)
         {
             DataSelecionadoEvento?.Invoke(this, e);
+
+            if (TipoDataSelecionada == DatasEnum.Todos)
+            {
+                anoComboBox.SelectedValue = String.Empty;
+            } else
+            {
+                anoComboBox.SelectedItem = DateTime.Today.Year.ToString();
+            }
+
         }
 
 
@@ -115,8 +125,12 @@ namespace Dark_Admin_Panel.UserControls
         public void OnAnoSelecionado(AnoEventArgs e)
         {
             AnoSelecionadoEvento?.Invoke(this, e);
-        }
 
+            foreach (FiltroPorDataUserControl filtroPorDataUserControl in this.FiltrosDatas.Children)
+            {
+                filtroPorDataUserControl.Selecionado = false;
+            }
+        }
 
 
 
