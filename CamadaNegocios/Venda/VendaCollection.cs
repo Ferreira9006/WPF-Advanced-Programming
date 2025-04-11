@@ -72,6 +72,23 @@ namespace CamadaNegocios.Venda
             return totalFaturacao;
         }
 
+        // Obter um mapa com as marcas e respetivas vendas de forma descendente
+        public Dictionary<string, float?> ObterMarcasVendas(DatasEnum datasEnum, int ano)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            var marcasVendas = this
+                            .Where(e => e.DataVenda >= dataInicial && e.DataVenda <= dataFinal)
+                            .GroupBy(e => e.DescricaoMarca)
+                            .Select(g => new
+                            {
+                                DescricaoMarca = g.Key,
+                                TotalVendas = g.Sum(x => x.Preco)
+                            })
+                            .OrderByDescending(g => g.TotalVendas)
+                            .ToDictionary(g => g.DescricaoMarca, g => g.TotalVendas);
+            return marcasVendas;
+        }
+
         private (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
         {
             DateTime dataInicial = DateTime.MinValue;

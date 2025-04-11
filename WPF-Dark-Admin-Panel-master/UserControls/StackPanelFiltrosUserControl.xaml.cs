@@ -50,7 +50,7 @@ namespace Dark_Admin_Panel.UserControls
 
         #endregion
 
-        #region Métodos
+        #region Metodos
 
         private void InicializarFiltros()
         {

@@ -57,6 +57,7 @@ namespace Dark_Admin_Panel
             AplicarFiltroTopVendedor();
             AplicarFiltroTotalCarrosVendidos();
             AplicarFiltroTotalFaturacao();
+            AplicarFiltroTopMarcas();
         }
 
         private void AplicarFiltroTopVendedor()
@@ -85,6 +86,7 @@ namespace Dark_Admin_Panel
             {
                 this.TotalCarrosVendidosInfoCard.Number = totalCarrosVendidos.ToString();
             }
+            
         }
 
         private void AplicarFiltroTotalFaturacao()
@@ -99,6 +101,22 @@ namespace Dark_Admin_Panel
             {
                 string totalFaturacaoFormatado = totalFaturacao.Value.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(',', '.');
                 this.TotalFaturacaoInfoCard.Number = totalFaturacaoFormatado + " €";
+            }
+        }
+
+        private void AplicarFiltroTopMarcas()
+        {
+            foreach (var element in this.Vendas.ObterMarcasVendas(this.Data, this.Ano))
+            {
+                Item item = new Item();
+                item.Title = element.Key; 
+                item.Desc = element.Value.HasValue
+                    ? element.Value.Value.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(',', '.') + " €"
+                    : "NA";
+                
+                this.TopMarcasStackPanel.Children.Add(item);
+
+  
             }
         }
 

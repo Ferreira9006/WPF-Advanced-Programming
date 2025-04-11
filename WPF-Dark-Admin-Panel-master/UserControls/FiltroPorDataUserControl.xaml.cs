@@ -23,7 +23,7 @@ namespace Dark_Admin_Panel.UserControls
     {
         #region Construtores
 
-        public event EventHandler<EventArgs> BotaoSelecionadoEvento;
+       
 
         public FiltroPorDataUserControl()
         {
@@ -82,19 +82,21 @@ namespace Dark_Admin_Panel.UserControls
 
         #region Eventos
 
+        public event EventHandler<EventArgs> BotaoSelecionadoEvento;
+
         public void OnBotaoSelecionado(EventArgs e)
         {
             BotaoSelecionadoEvento?.Invoke(this, e);
         }
-
-      
-
-        #endregion
 
         private void dataButton_Click(object sender, EventArgs e)
         {
             this.Selecionado = true;
              OnBotaoSelecionado(EventArgs.Empty);
         }
+      
+
+        #endregion
+
     }
 }

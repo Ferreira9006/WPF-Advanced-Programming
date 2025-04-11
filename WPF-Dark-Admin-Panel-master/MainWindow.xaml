@@ -252,12 +252,7 @@
                                 <TextBlock Text="Last Orders" Style="{StaticResource titleText}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1">
-                                <uc:Item Title="T-Shirt Embrace" Desc="John Doe - 10:30" Icon="Tshirt"/>
-                                <uc:Item Title="Shoes Kamoin" Desc="Karim Penci - 12:00" Icon="ShoePrints"/>
-                                <uc:Item Title="Socks Besaze" Desc="Mari Sumue - 13:45" Icon="Socks"/>
-                                <uc:Item Title="T-Shirt Argok" Desc="Ali Qackman - 14:30" Icon="Tshirt"/>
-                                <uc:Item Title="Hat Jackman" Desc="Jack Praide - 15:25" Icon="HardHat"/>
+                            <StackPanel x:Name="TopMarcasStackPanel" Grid.Row="1">
                             </StackPanel>
                         </Grid>
                     </Border>
