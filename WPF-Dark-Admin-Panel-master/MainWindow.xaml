@@ -167,10 +167,10 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 25">
                                 <fa:IconImage Icon="Circle" Style="{StaticResource titleIcon}"/>
-                                <TextBlock Text="Profit" Style="{StaticResource titleText}"/>
+                                <TextBlock Text="Vendas" Style="{StaticResource titleText}"/>
                             </StackPanel>
 
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 25" Grid.Row="1">
+                            <!--<StackPanel x:Name="graficodsa" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 25" Grid.Row="1">
                                 <TextBlock Text="70000" Foreground="#717EB2" Margin="0 0 0 25"/>
                                 <TextBlock Text="60000" Foreground="#717EB2" Margin="0 0 0 25"/>
                                 <TextBlock Text="50000" Foreground="#717EB2" Margin="0 0 0 25"/>
@@ -179,24 +179,30 @@
                                 <TextBlock Text="20000" Foreground="#717EB2" Margin="0 0 0 25"/>
                                 <TextBlock Text="10000" Foreground="#717EB2" Margin="0 0 0 25"/>
                                 <TextBlock Text="0" Foreground="#717EB2" HorizontalAlignment="Right"/>
-                            </StackPanel>
+                            </StackPanel>-->
 
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Orientation="Horizontal" Margin="50 0 0 0">
+                            <!--<StackPanel x:Name="eixoX" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Orientation="Horizontal" Margin="50 0 0 0">
                                 <TextBlock Text="1" Foreground="#717EB2"/>
-                                <TextBlock Text="2" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="3" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="4" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="5" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="6" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="7" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="8" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="9" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="10" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="11" Foreground="#717EB2" Margin="41 0 0 0"/>
-                                <TextBlock Text="12" Foreground="#717EB2" Margin="41 0 0 0"/>
-                            </StackPanel>
+                                <TextBlock Text="2" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="3" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="4" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="5" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="6" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="7" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="8" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="9" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="10" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="11" Foreground="#717EB2" Margin="10 0 0 0"/>
+                                <TextBlock Text="12" Foreground="#717EB2" Margin="10 0 0 0"/>
+                            </StackPanel>-->
 
-                            <lvc:CartesianChart Grid.Row="1" Margin="45 0 0 25">
+                            <!--<lvc:CartesianChart x:Name="grafico" Series="{Binding SeriesCollection}"
+                                                AxisX="{Binding LabelsAxis}"
+                                                AxisY="{Binding YFormatter}">
+
+                            </lvc:CartesianChart>-->
+
+                            <lvc:CartesianChart x:Name="grafico" Grid.Row="1" Margin="45 0 0 25">
                                 <lvc:CartesianChart.Background>
                                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                         <GradientStop Color="#26376F" Offset="0"/>
@@ -207,9 +213,9 @@
                                 <lvc:CartesianChart.DataTooltip>
                                     <lvc:DefaultTooltip Background="#24336A" Foreground="#D5E2FF"/>
                                 </lvc:CartesianChart.DataTooltip>
-                                
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis MinValue="1" MaxValue="5" Foreground="#717EB2" ShowLabels="False">
+
+                                <!--<lvc:CartesianChart.AxisX>
+                                    <lvc:Axis MinValue="1" MaxValue="5" Foreground="#717EB2" ShowLabels="True">
                                         <lvc:Axis.Separator>
                                             <lvc:Separator StrokeThickness="0" Step="1"/>
                                         </lvc:Axis.Separator>
@@ -217,15 +223,15 @@
                                 </lvc:CartesianChart.AxisX>
 
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis MinValue="0" MaxValue="60000" Foreground="#717EB2" ShowLabels="False">
+                                    <lvc:Axis MinValue="0" MaxValue="10000" Foreground="#717EB2" ShowLabels="True">
                                         <lvc:Axis.Separator>
                                             <lvc:Separator StrokeThickness="0"/>
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
+                                </lvc:CartesianChart.AxisY>-->
 
-                                <lvc:CartesianChart.Series>
-                                    <lvc:LineSeries Name="Slm" Values="20000,17000,30000,15000,50000,30000,20000" StrokeThickness="2" Stroke="#ADA4FD" PointGeometrySize="0">
+                                <!--<lvc:CartesianChart.Series>
+                                    <lvc:LineSeries Name="Slm" Values="20000,10000,1000,10000,1000" StrokeThickness="2" Stroke="#ADA4FD" PointGeometrySize="0">
                                         <lvc:LineSeries.Fill>
                                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                                 <GradientStop Color="#B397E2" Offset="0.4"/>
@@ -233,7 +239,7 @@
                                             </LinearGradientBrush>
                                         </lvc:LineSeries.Fill>
                                     </lvc:LineSeries>
-                                </lvc:CartesianChart.Series>
+                                </lvc:CartesianChart.Series>-->
                             </lvc:CartesianChart>
 
                         </Grid>
@@ -249,7 +255,7 @@
 
                             <StackPanel Orientation="Horizontal" Margin="28 0 0 15">
                                 <fa:IconImage Icon="Circle" Style="{StaticResource titleIcon}"/>
-                                <TextBlock Text="Last Orders" Style="{StaticResource titleText}"/>
+                                <TextBlock Text="Faturação por Marca" Style="{StaticResource titleText}"/>
                             </StackPanel>
 
                             <StackPanel x:Name="TopMarcasStackPanel" Grid.Row="1">

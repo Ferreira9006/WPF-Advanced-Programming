@@ -2,11 +2,15 @@
 using CamadaNegocios.Enum;
 using CamadaNegocios.Venda;
 using Dark_Admin_Panel.UserControls;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Microsoft.Identity.Client;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace Dark_Admin_Panel
 {
@@ -17,11 +21,15 @@ namespace Dark_Admin_Panel
         public MainWindow()
         {
             InitializeComponent();
+   
         }
 
         #endregion
 
         #region Properties
+        public SeriesCollection SeriesCollection { get; set; }
+        public List<Axis> LabelsAxis { get; set; }
+        public List<Axis> YFormatter { get; set; }
 
         VendaCollection Vendas { get; set; }
 
@@ -46,8 +54,6 @@ namespace Dark_Admin_Panel
         }
 
 
-
-
         #endregion
 
         #region Metodos
@@ -58,6 +64,7 @@ namespace Dark_Admin_Panel
             AplicarFiltroTotalCarrosVendidos();
             AplicarFiltroTotalFaturacao();
             AplicarFiltroTopMarcas();
+            construirGrafico();
         }
 
         private void AplicarFiltroTopVendedor()
@@ -89,6 +96,55 @@ namespace Dark_Admin_Panel
             
         }
 
+        private void construirGrafico()
+        {
+            this.Vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
+
+            AxesCollection axesY = new AxesCollection();
+            Axis axisY = new Axis();
+
+            axisY.Title = "ABC";
+            axisY.MinValue = 0;
+            axisY.MaxValue = (double)this.Vendas.ObterMaximo(this.Data, this.Ano)*1.1;
+            axisY.Separator.Step = (double)this.Vendas.ObterStepGrafico(this.Data, this.Ano, 5);
+            axesY.Add(axisY);
+
+            grafico.AxisY = axesY;
+
+
+            AxesCollection axesX = new AxesCollection();
+            Axis axisX = new Axis();
+            axisX.Title = "XYZ";
+            axisX.Labels = this.Vendas.ObterValoresDatas(this.Data, this.Ano);
+            grafico.AxisX = axesX;
+
+            LineSeries lineSeries = new LineSeries();
+            lineSeries.Title = "Vendassss";
+            ChartValues<int> valuesOfChart = new ChartValues<int>();
+
+
+            foreach (CamadaNegocios.Venda.Venda venda in this.Vendas)
+            {
+                
+               valuesOfChart.Add((int)venda.Preco);
+                               
+            }
+
+            MessageBox.Show(axisY.Separator.Step.ToString());
+            
+
+
+
+            lineSeries.Values = valuesOfChart;
+            
+            grafico.Series.Add(lineSeries);
+
+
+            //DataContext = this;
+
+
+        }
+
         private void AplicarFiltroTotalFaturacao()
         {
             float? totalFaturacao = this.Vendas.ObterTotalFaturacao(this.Data, this.Ano);
@@ -99,7 +155,7 @@ namespace Dark_Admin_Panel
             }
             else
             {
-                string totalFaturacaoFormatado = totalFaturacao.Value.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(',', '.');
+                string totalFaturacaoFormatado = totalFaturacao.Value.ToString("#,0.00", CultureInfo.InvariantCulture);
                 this.TotalFaturacaoInfoCard.Number = totalFaturacaoFormatado + " €";
             }
         }

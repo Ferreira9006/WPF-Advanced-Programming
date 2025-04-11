@@ -72,6 +72,15 @@ namespace CamadaNegocios.Venda
             return totalFaturacao;
         }
 
+        public float? ObterMaximo(DatasEnum datasEnum, int ano)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            float? maximo = (from element in this
+                                     where element.DataVenda >= dataInicial && element.DataVenda <= dataFinal
+                                     select element.Preco).Max();
+            return maximo;
+        }
+
         // Obter um mapa com as marcas e respetivas vendas de forma descendente
         public Dictionary<string, float?> ObterMarcasVendas(DatasEnum datasEnum, int ano)
         {
@@ -88,6 +97,62 @@ namespace CamadaNegocios.Venda
                             .ToDictionary(g => g.DescricaoMarca, g => g.TotalVendas);
             return marcasVendas;
         }
+
+
+        public IList<string> ObterValoresDatas(DatasEnum datasEnum, int ano)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            string[] valores = Array.Empty<string>();
+
+            if (datasEnum == DatasEnum.Mes)
+            {
+                int totalDias = (dataFinal - dataInicial).Days + 1;
+                valores = Enumerable.Range(0, totalDias)
+                                    .Select(i => dataInicial.AddDays(i).Day.ToString())
+                                    .ToArray();
+            }
+            else if (datasEnum == DatasEnum.Semana)
+            {
+                int totalDias = (dataFinal - dataInicial).Days + 1;
+                valores = Enumerable.Range(0, totalDias)
+                                    .Select(i => dataInicial.AddDays(i).DayOfWeek.ToString())
+                                    .ToArray();
+            }
+            else if (datasEnum == DatasEnum.Hoje)
+            {
+                valores = new string[] { dataInicial.Day.ToString() };
+            }
+            else if (datasEnum == DatasEnum.Todos)
+            {
+                int totalAnos = dataFinal.Year - dataInicial.Year + 1;
+                valores = Enumerable.Range(dataInicial.Year, totalAnos)
+                                    .Select(y => y.ToString())
+                                    .ToArray();
+            }
+
+            return valores;
+        }
+
+
+        public float? ObterStepGrafico(DatasEnum datasEnum, int ano, int step)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+
+            float? maximoFaturacao = (from element in this
+                                      where element.DataVenda >= dataInicial && element.DataVenda <= dataFinal
+                                      select element.Preco).Max();
+
+            if (maximoFaturacao != null)
+            {
+                return (float)(Math.Ceiling((double)maximoFaturacao / 5000.0) * 5000) / step;
+           
+            }
+
+            return null;
+        }
+
+
+
 
         private (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
         {

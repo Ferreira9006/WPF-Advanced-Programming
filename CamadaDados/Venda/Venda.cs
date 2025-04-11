@@ -18,8 +18,7 @@ namespace CamadaDados.Venda
             DataTable dataTable = null;
             try
             {
-                string connectionString = @";Data Source=PEDRO\SQLEXPRESS
-;Initial Catalog=ProgramacaoAvancada;Integrated Security=True;TrustServerCertificate=True";
+                string connectionString = @";Data Source=PEDROSILVA;Initial Catalog=ProjetoPA;Integrated Security=True;TrustServerCertificate=True";
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
 
                 sqlConnection.Open();
