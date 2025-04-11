@@ -54,6 +54,24 @@ namespace CamadaNegocios.Venda
             return topVendedor;
         }
 
+        public int ObterTotalAutomoveisVendidos(DatasEnum datasEnum, int ano)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            int totalAutomoveisVendidos = (from element in this
+                                          where element.DataVenda >= dataInicial && element.DataVenda <= dataFinal
+                                          select element).Count();
+            return totalAutomoveisVendidos;
+        }
+
+        public float? ObterTotalFaturacao(DatasEnum datasEnum, int ano)
+        {
+            (DateTime dataInicial, DateTime dataFinal) = this.obterDatas(datasEnum, ano);
+            float? totalFaturacao = (from element in this
+                                     where element.DataVenda >= dataInicial && element.DataVenda <= dataFinal
+                                     select element.Preco).Sum();
+            return totalFaturacao;
+        }
+
         private (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
         {
             DateTime dataInicial = DateTime.MinValue;

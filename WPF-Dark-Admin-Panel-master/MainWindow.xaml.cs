@@ -4,6 +4,7 @@ using CamadaNegocios.Venda;
 using Dark_Admin_Panel.UserControls;
 using Microsoft.Identity.Client;
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 
@@ -44,8 +45,62 @@ namespace Dark_Admin_Panel
             set { ano = value; }
         }
 
-    
 
+
+
+        #endregion
+
+        #region Metodos
+
+        private void AplicarFiltro()
+        {
+            AplicarFiltroTopVendedor();
+            AplicarFiltroTotalCarrosVendidos();
+            AplicarFiltroTotalFaturacao();
+        }
+
+        private void AplicarFiltroTopVendedor()
+        {
+            var topVendedor = this.Vendas.ObterTopVendedor(this.Data, this.Ano);
+
+            if (topVendedor == null)
+            {
+                this.TopVendedorInfoCard.Number = "NA";
+            }
+            else
+            {
+                this.TopVendedorInfoCard.Number = topVendedor.ToString();
+            }
+        }
+
+        private void AplicarFiltroTotalCarrosVendidos()
+        {
+            int totalCarrosVendidos = this.Vendas.ObterTotalAutomoveisVendidos(this.Data, this.Ano);
+
+            if (totalCarrosVendidos == 0)
+            {
+                this.TotalCarrosVendidosInfoCard.Number = "NA";
+            }
+            else
+            {
+                this.TotalCarrosVendidosInfoCard.Number = totalCarrosVendidos.ToString();
+            }
+        }
+
+        private void AplicarFiltroTotalFaturacao()
+        {
+            float? totalFaturacao = this.Vendas.ObterTotalFaturacao(this.Data, this.Ano);
+
+            if (totalFaturacao == null)
+            {
+                this.TotalFaturacaoInfoCard.Number = "NA";
+            }
+            else
+            {
+                string totalFaturacaoFormatado = totalFaturacao.Value.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(',', '.');
+                this.TotalFaturacaoInfoCard.Number = totalFaturacaoFormatado + " €";
+            }
+        }
 
         #endregion
 
@@ -59,17 +114,7 @@ namespace Dark_Admin_Panel
             this.AplicarFiltro();
         }
 
-        private void AplicarFiltro()
-        {
-            if (this.Vendas.ObterTopVendedor(this.Data, this.Ano) == null)
-            {
-                this.TopVendedorInfoCard.Number = "NA";
-            } else
-            {
-                this.TopVendedorInfoCard.Number = this.Vendas.ObterTopVendedor(this.Data, this.Ano).ToString();
-            }
-
-        }
+       
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -83,9 +128,6 @@ namespace Dark_Admin_Panel
         {
             this.Close();
         }
-
-        #endregion
-
         private void StackPanelFiltrosUserControl_DataSelecionadoEvento(object sender, CamadaNegocios.Eventos.DataEventArgs e)
         {
             this.Data = e.Data;
@@ -101,5 +143,8 @@ namespace Dark_Admin_Panel
             this.Data = DatasEnum.Todos;
             this.AplicarFiltro();
         }
+
+        #endregion
+
     }
 }
