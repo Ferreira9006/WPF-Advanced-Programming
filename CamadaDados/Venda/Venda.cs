@@ -15,10 +15,10 @@ namespace CamadaDados.Venda
         
         public static DataTable ObterLista()
         {
-            DataTable dataTable = null;
+            DataTable? dataTable;
             try
             {
-                string connectionString = @";Data Source=PEDROSILVA;Initial Catalog=ProjetoPA;Integrated Security=True;TrustServerCertificate=True";
+                string connectionString = CamadaDados.Properties.Settings.Default.ConnectionString;
                 SqlConnection sqlConnection = new SqlConnection(connectionString);
 
                 sqlConnection.Open();
