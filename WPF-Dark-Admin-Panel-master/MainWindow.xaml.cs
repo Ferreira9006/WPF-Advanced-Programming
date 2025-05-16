@@ -105,10 +105,25 @@ namespace Dark_Admin_Panel
 
             axisY.Title = "ABC";
             axisY.MinValue = 0;
-            axisY.MaxValue = (double)this.Vendas.ObterMaximo(this.Data, this.Ano)*1.1;
-            axisY.Separator.Step = (double)this.Vendas.ObterStepGrafico(this.Data, this.Ano, 5);
-            axesY.Add(axisY);
+            try
+            {
+                axisY.MaxValue = (double)this.Vendas.ObterMaximo(this.Data, this.Ano) * 1.1;
+            }
+            catch (Exception ex)
+            {
+                axisY.MaxValue = 0;
+            }
+            try
+            {
+                axisY.Separator.Step = (double)this.Vendas.ObterStepGrafico(this.Data, this.Ano, 5);
+                axesY.Add(axisY);
+            }
+            catch (Exception)
+            {
 
+                axisY.Separator.Step = 0;
+            }
+        
             grafico.AxisY = axesY;
 
 
@@ -122,12 +137,20 @@ namespace Dark_Admin_Panel
             lineSeries.Title = "Vendassss";
             ChartValues<int> valuesOfChart = new ChartValues<int>();
 
-
+            int i = 0;
             foreach (CamadaNegocios.Venda.Venda venda in this.Vendas)
             {
                 
-               valuesOfChart.Add((int)venda.Preco);
-                               
+                if (i < 100)
+                {
+                    valuesOfChart.Add((int)venda.Preco);
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+
             }
 
             MessageBox.Show(axisY.Separator.Step.ToString());
