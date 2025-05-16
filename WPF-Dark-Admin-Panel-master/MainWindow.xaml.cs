@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Linq;
 
 namespace Dark_Admin_Panel
 {
@@ -21,7 +22,7 @@ namespace Dark_Admin_Panel
         public MainWindow()
         {
             InitializeComponent();
-   
+
         }
 
         #endregion
@@ -38,9 +39,11 @@ namespace Dark_Admin_Panel
         public DatasEnum Data
         {
             get { return datas; }
-            set { datas = value;
+            set
+            {
+                datas = value;
 
-                
+
 
             }
         }
@@ -93,7 +96,7 @@ namespace Dark_Admin_Panel
             {
                 this.TotalCarrosVendidosInfoCard.Number = totalCarrosVendidos.ToString();
             }
-            
+
         }
 
         private void construirGrafico()
@@ -103,63 +106,66 @@ namespace Dark_Admin_Panel
             AxesCollection axesY = new AxesCollection();
             Axis axisY = new Axis();
 
-            axisY.Title = "ABC";
+            axisY.Title = "Euros €";
             axisY.MinValue = 0;
             try
             {
                 axisY.MaxValue = (double)this.Vendas.ObterMaximo(this.Data, this.Ano) * 1.1;
-            }
-            catch (Exception ex)
-            {
-                axisY.MaxValue = 0;
-            }
-            try
-            {
                 axisY.Separator.Step = (double)this.Vendas.ObterStepGrafico(this.Data, this.Ano, 5);
                 axesY.Add(axisY);
             }
             catch (Exception)
             {
-
+                axisY.MaxValue = 0;
                 axisY.Separator.Step = 0;
+                MessageBox.Show("Não existem valores a mostrar.");
             }
-        
+
             grafico.AxisY = axesY;
 
 
             AxesCollection axesX = new AxesCollection();
             Axis axisX = new Axis();
-            axisX.Title = "XYZ";
+            axisX.Title = "Dias";
             axisX.Labels = this.Vendas.ObterValoresDatas(this.Data, this.Ano);
             grafico.AxisX = axesX;
 
             LineSeries lineSeries = new LineSeries();
-            lineSeries.Title = "Vendassss";
+            lineSeries.Title = "Euros";
             ChartValues<int> valuesOfChart = new ChartValues<int>();
 
-            int i = 0;
+
+            Dictionary<DateTime, float> listaAgrupada = new Dictionary<DateTime, float>();
+
             foreach (CamadaNegocios.Venda.Venda venda in this.Vendas)
             {
-                
-                if (i < 100)
-                {
-                    valuesOfChart.Add((int)venda.Preco);
-                    i++;
-                }
-                else
-                {
-                    break;
-                }
+                DateTime date = venda.DataVenda.Date;
+                float? valor = venda.Preco;
 
+                if (valor.HasValue)
+                {
+                    if (!listaAgrupada.ContainsKey(date))
+                    {
+                        listaAgrupada.Add(date, valor.Value);
+                    }
+                    else
+                    {
+                        listaAgrupada[date] += valor.Value;
+                    }
+                }
             }
 
-            MessageBox.Show(axisY.Separator.Step.ToString());
-            
+            axisY.Separator.Step = axisY.Separator.Step * 2;
+            axisY.MaxValue = listaAgrupada.Values.Max() * 1.05;
 
+            foreach (KeyValuePair<DateTime, float> item in listaAgrupada.OrderBy(k => k.Key))
+            {
+                valuesOfChart.Add((int)item.Value);
+            }
 
 
             lineSeries.Values = valuesOfChart;
-            
+
             grafico.Series.Add(lineSeries);
 
 
@@ -188,14 +194,14 @@ namespace Dark_Admin_Panel
             foreach (var element in this.Vendas.ObterMarcasVendas(this.Data, this.Ano))
             {
                 Item item = new Item();
-                item.Title = element.Key; 
+                item.Title = element.Key;
                 item.Desc = element.Value.HasValue
                     ? element.Value.Value.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(',', '.') + " €"
                     : "NA";
-                
+
                 this.TopMarcasStackPanel.Children.Add(item);
 
-  
+
             }
         }
 
@@ -211,7 +217,7 @@ namespace Dark_Admin_Panel
             this.AplicarFiltro();
         }
 
-       
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -234,7 +240,7 @@ namespace Dark_Admin_Panel
 
         private void StackPanelFiltrosUserControl_AnoSelecionadoEvento(object sender, CamadaNegocios.Eventos.AnoEventArgs e)
         {
-        
+
 
             this.Ano = e.Ano;
             this.Data = DatasEnum.Todos;
