@@ -275,5 +275,11 @@ namespace Dark_Admin_Panel
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AboutMeWindow aboutMeWindow = new AboutMeWindow();
+            aboutMeWindow.ShowDialog();
+        }
     }
 }
