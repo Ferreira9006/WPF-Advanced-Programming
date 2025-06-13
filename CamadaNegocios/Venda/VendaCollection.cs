@@ -154,7 +154,7 @@ namespace CamadaNegocios.Venda
 
 
 
-        private (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
+        public (DateTime, DateTime) obterDatas(DatasEnum tipoData, int ano)
         {
             DateTime dataInicial = DateTime.MinValue;
             DateTime dataFinal = DateTime.MinValue;

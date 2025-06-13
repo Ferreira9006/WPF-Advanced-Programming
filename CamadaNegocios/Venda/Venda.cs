@@ -88,10 +88,16 @@ namespace CamadaNegocios.Venda
             string erro = string.Empty;
 
             DataTable dataTable = Venda.Listar(out erro);
+            VendaCollection vendas= new VendaCollection(dataTable);
 
-            VendaCollection vendas = new VendaCollection(dataTable);
+            VendaCollection vendasOrdenadas = new VendaCollection();
 
-            return vendas;
+            foreach (var venda in vendas.OrderBy(v => v.DataVenda))
+            {
+                vendasOrdenadas.Add(venda);
+            }
+
+            return vendasOrdenadas;
         }
 
         #endregion

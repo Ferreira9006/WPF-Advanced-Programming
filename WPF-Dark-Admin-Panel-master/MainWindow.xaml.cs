@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Linq;
+using System.Windows.Media.Animation;
 
 namespace Dark_Admin_Panel
 {
@@ -42,9 +43,6 @@ namespace Dark_Admin_Panel
             set
             {
                 datas = value;
-
-
-
             }
         }
 
@@ -99,8 +97,34 @@ namespace Dark_Admin_Panel
 
         }
 
+        private void limparGrafico()
+        {
+            grafico.Series.Clear();
+            grafico.AxisX.Clear();
+            grafico.AxisY.Clear();
+        }
+
+        private int obterStepX(DatasEnum datas)
+        {
+            switch (datas)
+            {
+                case DatasEnum.Semana:
+                    return 1;
+                case DatasEnum.Mes:
+                    return 3;
+                case DatasEnum.Hoje:
+                    return 1;
+                case DatasEnum.Todos:
+                    return 20;
+                default:
+                    return 1; // Default step if not specified
+            }
+        }
+
         private void construirGrafico()
         {
+            limparGrafico();
+
             this.Vendas = CamadaNegocios.Venda.Venda.ObterListaVendas();
 
             AxesCollection axesY = new AxesCollection();
@@ -108,45 +132,36 @@ namespace Dark_Admin_Panel
 
             axisY.Title = "Euros €";
             axisY.MinValue = 0;
-            try
-            {
-                axisY.MaxValue = (double)this.Vendas.ObterMaximo(this.Data, this.Ano) * 1.1;
-                axisY.Separator.Step = (double)this.Vendas.ObterStepGrafico(this.Data, this.Ano, 5);
-                axesY.Add(axisY);
-            }
-            catch (Exception)
-            {
-                axisY.MaxValue = 0;
-                axisY.Separator.Step = 0;
-                MessageBox.Show("Não existem valores a mostrar.");
-            }
-
+            axesY.Add(axisY);
             grafico.AxisY = axesY;
 
 
             AxesCollection axesX = new AxesCollection();
             Axis axisX = new Axis();
             axisX.Title = "Dias";
-            axisX.Labels = this.Vendas.ObterValoresDatas(this.Data, this.Ano);
-            grafico.AxisX = axesX;
+            axisX.Labels = [];
+
+            (DateTime dataInicial, DateTime dataFinal) = this.Vendas.obterDatas(this.Data, this.Ano);
+
 
             LineSeries lineSeries = new LineSeries();
             lineSeries.Title = "Euros";
             ChartValues<int> valuesOfChart = new ChartValues<int>();
 
-
             Dictionary<DateTime, float> listaAgrupada = new Dictionary<DateTime, float>();
 
+           
             foreach (CamadaNegocios.Venda.Venda venda in this.Vendas)
             {
                 DateTime date = venda.DataVenda.Date;
                 float? valor = venda.Preco;
 
-                if (valor.HasValue)
+                if (valor.HasValue && date >= dataInicial && date <= dataFinal)
                 {
                     if (!listaAgrupada.ContainsKey(date))
                     {
                         listaAgrupada.Add(date, valor.Value);
+                        axisX.Labels.Add(venda.DataVenda.ToString("dd/MM/yy"));
                     }
                     else
                     {
@@ -155,7 +170,12 @@ namespace Dark_Admin_Panel
                 }
             }
 
-            axisY.Separator.Step = axisY.Separator.Step * 2;
+            axesX.Add(axisX);
+            grafico.AxisX = axesX;
+
+            axisX.Separator.Step = obterStepX(datas);
+
+            //axisY.Separator.Step = axisY.Separator.Step * 2;
             axisY.MaxValue = listaAgrupada.Values.Max() * 1.05;
 
             foreach (KeyValuePair<DateTime, float> item in listaAgrupada.OrderBy(k => k.Key))
@@ -191,6 +211,8 @@ namespace Dark_Admin_Panel
 
         private void AplicarFiltroTopMarcas()
         {
+            this.TopMarcasStackPanel.Children.Clear();
+
             foreach (var element in this.Vendas.ObterMarcasVendas(this.Data, this.Ano))
             {
                 Item item = new Item();
@@ -249,5 +271,9 @@ namespace Dark_Admin_Panel
 
         #endregion
 
+        private void StackPanelFiltrosUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -25,8 +25,8 @@ namespace CamadaDados.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PCS1\\SQLEXPRESS;Initial Catalog=IslaDrive;Integrated Security=True;Tr" +
-            "ustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PEDROSILVA;Initial Catalog=ProjetoPA;Integrated Security=True;TrustSe" +
+            "rverCertificate=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

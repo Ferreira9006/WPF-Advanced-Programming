@@ -56,7 +56,7 @@ namespace Dark_Admin_Panel.UserControls
         {
             this.TipoDataSelecionada = DatasEnum.Todos;
 
-            for (int i = 2020; i <= DateTime.Now.Year; i++)
+            for (int i = 2024; i <= DateTime.Now.Year; i++)
             {
                 anoComboBox.Items.Add(i.ToString());
             }

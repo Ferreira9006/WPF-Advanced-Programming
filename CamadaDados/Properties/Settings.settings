@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=PCS1\SQLEXPRESS;Initial Catalog=IslaDrive;Integrated Security=True;TrustServerCertificate=True</Value>
+      <Value Profile="(Default)">Data Source=PEDROSILVA;Initial Catalog=ProjetoPA;Integrated Security=True;TrustServerCertificate=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
